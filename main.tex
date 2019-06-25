@@ -1,4 +1,4 @@
-\documentclass[a4,11pt]{article}
+\documentclass[a4paper,11pt]{article}
 
 %
 % PDFファイルの作成方法
@@ -46,7 +46,7 @@
 \pagestyle{empty}
 
 \begin{document}
-\renewcommand{\baselinestretch}{1.12}\small\normalsize
+\renewcommand{\baselinestretch}{1.20}\small\normalsize
 
 \begin{center}
 %   \textbf{\Large 応用物理学会学術講演会予稿のタイトル}
@@ -64,15 +64,15 @@
 %0.2\cdot e\textsuperscript{3}$
 
 %The ability to correctly parse and normalise physical measurements is a task common in almost every domain. 
-The identification of physical measurements is a recurrent need in materials informatics (MI). For example, the extraction of superconductor materials and their properties requires to identify and understand temperature, pressure, magnetisation \autocite{foppiano2019proposal}.
-When designing automatic systems for information extraction from scientific literature, the identification of the raw measurement alone is not sufficient. Quantity transformations, such as normalisation, require the understanding of values and units, which are contained in unstructured text with ad-hoc conventions to convey their meaning. 
+The identification of physical measurements is a recurrent need in materials informatics (MI). For example, the extraction of superconductor materials and their properties\footcite{foppiano2019proposal} requires to identify and understand temperature, pressure, magnetisation.
+When designing automatic systems for information extraction from scientific literature, the identification of the raw measurement alone is not sufficient. Quantity transformations, such as normalisation, require the understanding of values and units, which are contained in unstructured text with ad-hoc conventions. 
 %In polymers, the standard unit does not correspond with the one in the Polynfo reference database (e.g. \textit{specific volume} is standardised as  \( \frac{m\textsuperscript{3}}{kg} \) but is represented in Polynfo with \( \frac{cm\textsuperscript{3}}{kg} \).
 %It is common to encounter new variations or complex units not present in any general dictionaries. 
 String matching and lookups are failing with growing unit complexity and variability. Therefore a generic unit segmentation system is necessary.
 
-This contribution is part of a larger project called Grobid-quantities \autocite{grobid-quantities}, a machine learning (ML) based, Open Source system for extracting and normalising physical measurements from scientific and patent literature. 
+This contribution is part of a larger project called Grobid-quantities \footcite{grobid-quantities}, a machine learning (ML) based, Open Source system for extracting and normalising physical measurements from scientific and patent literature. 
 %Grobid-quantities is a module based on Grobid \autocite{GROBID}, a machine learning framework for parsing and structuring PDF documents. 
-In this submission, we present a general approach for units representation, and we introduce the public availability of a corpus of segmented physical units. 
+In this submission, we present a general approach for units representation, and we introduce the public availability (Creative Commons licence) of a corpus of segmented physical units. 
 %Corpora of this kind are needed for training newly sequence labelling unit segmentation models or to evaluate existing systems. 
 % There are several work related on extraction of physical units. \textit{Berrahou et all}\autocite{berrahou2013extract} illustrates a fairly similar model for unit representation without taking in account the needs of unit normalisation. \textit{Peter et all}\autocite{peter2017quantity} describes the construction of a database of units using machine learning. Unfortunately they do not provide the resulting database publicly. 
 Currently, there are no comparable results in scientific literature because no public datasets are available for this task.
@@ -84,12 +84,12 @@ Figure~\ref{fig:dataset example} illustrates an example where \texttt{kV\textsup
     \centering
     % \includegraphics[width=0.9\textwidth,natwidth=575,natheight=101]{sample-corpus.png}
     \includegraphics[width=0.9\textwidth,natwidth=527,natheight=124]{system-schema.png}
-    \caption[] {The process of parsing a raw unit into the product of triples. Notice that the label \texttt{pow} is used to identify both exponent and division marks (needed to correctly set the second triple exponent, in this case negative).}
+    \caption[] {The process of parsing a raw unit into the product of triples. Notice that the label \texttt{pow} is used to identify both exponent and division marks (needed to correctly set the second triple's exponent, in this case negative).}
     \label{fig:dataset example}
 \end{figure}
 
-We used the Grobid-quantities ML-based Units parser implementation to create a new unit segmentation corpus. We used data provided by previous work of some of the authors \autocite{suzuki2018constructing}, where about 2000 units were extracted from 3490 papers of Journal of Applied Physics. The data was pre-annotated using Grobid-quantities, and manually corrected. 
+We used the Grobid-quantities ML-based unit segmentation implementation to create a new corpus. We used data provided by previous work of some of the authors\footcite{suzuki2018constructing} , where about 2000 units were extracted from 3490 papers of Journal of Applied Physics. The data was pre-annotated and manually corrected. 
 
-The resulting corpus contains approximately 700 simple and 1300 complex units, and it's available at the Grobid-quantities repository\footnotemark[3]. It is suitable for evaluating new or existing systems for unit segmentation. We plan to increase the coverage by adding new data from other domains.
+The resulting corpus contains approximately 700 simple and 1300 complex units, and it's available in XML format at the Grobid-quantities repository\footnotemark[3]. It is suitable for evaluating new or existing systems for unit segmentation. We plan to increase the coverage by adding new data from other domains.
 
 \end{document}
